@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tico Tech - Jasa Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A5CAA;
+            --secondary: #1A365D;
+            --accent: #FF6B35;
+            --light: #F8FAFC;
+            --dark: #1E293B;
+            --gray: #64748B;
+            --success: #10B981;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f9fafb;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            filter: drop-shadow(0 0 5px rgba(255, 107, 53, 0.3));
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, white, #E2E8F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-subtext {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            letter-spacing: 2px;
+            margin-top: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(rgba(42, 92, 170, 0.05), rgba(26, 54, 93, 0.05));
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .service-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-detail {
+            background-color: var(--primary);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-detail:hover {
+            background-color: var(--secondary);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--radius);
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 25px 30px 10px;
+            border-bottom: 1px solid #E2E8F0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-body {
+            padding: 25px 30px;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-price {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .modal-desc {
+            line-height: 1.7;
+            color: var(--dark);
+            margin-bottom: 30px;
+        }
+
+        .modal-features {
+            margin-bottom: 30px;
+        }
+
+        .modal-features h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+
+        .modal-features ul {
+            list-style-position: inside;
+            color: var(--gray);
+        }
+
+        .modal-features li {
+            margin-bottom: 8px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo .logo-text {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-about p {
+            color: #CBD5E1;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h4, .footer-services h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-contact p {
+            color: #CBD5E1;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-services ul {
+            list-style: none;
+        }
+
+        .footer-services li {
+            margin-bottom: 10px;
+        }
+
+        .footer-services a {
+            color: #CBD5E1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-services a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .service-actions {
+                flex-direction: column;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .services, .hero {
+                padding: 50px 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">TICO TECH</div>
+                        <div class="logo-subtext">PROFESSIONAL SERVICES</div>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#services">Layanan</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="fade-in">Solusi Digital <span class="highlight">Profesional</span> untuk Kebutuhan Anda</h1>
+            <p class="fade-in delay-1">Tico Tech menyediakan jasa desain dan pembuatan aplikasi website serta presentasi yang menarik dan efektif untuk segala kebutuhan.</p>
+            <a href="#services" class="btn btn-detail fade-in delay-2">Lihat Layanan Kami</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Layanan Kami</h2>
+                <p>Kami menawarkan solusi digital terbaik dengan kualitas premium dan harga terjangkau</p>
+            </div>
+            
+            <div class="services-grid" id="servicesContainer">
+                <!-- Services will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-text">TICO TECH</div>
+                    <p class="footer-about">Menyediakan solusi digital profesional untuk membantu kesuksesan bisnis dan akademik Anda.</p>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Kontak Kami</h4>
+                    <p><i class="fas fa-phone-alt"></i> +62 899-0742-223</p>
+                    <p><i class="fab fa-whatsapp"></i> +62 899-0742-223</p>
+                    <p><i class="fas fa-envelope"></i> info@ticotech.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Indonesia</p>
+                </div>
+                
+                <div class="footer-services">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#services">Desain Aplikasi/Website</a></li>
+                        <li><a href="#services">Pembuatan PPT</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Tico Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Service Details -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Service Title</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img id="modalImage" src="" alt="Service Image">
+                </div>
+                <div class="modal-price" id="modalPrice">Rp. 100.000 - 300.000</div>
+                <div class="modal-desc" id="modalDesc">Service description here.</div>
+                
+                <div class="modal-features">
+                    <h4>Detail Layanan</h4>
+                    <ul id="modalFeatures">
+                        <!-- Features will be added by JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-whatsapp" id="modalWhatsapp">
+                        <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+                    </button>
+                    <button class="btn btn-detail" id="modalDana">
+                        <i class="fas fa-wallet"></i> Bayar via Dana
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Services Database
+        const servicesData = [
+            {
+                id: 1,
+                name: "Desain Aplikasi/Website",
+                price: "Rp. 100.000 - 300.000",
+                image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80",
+                description: "Desain aplikasi dan website modern dengan UI/UX menarik untuk bisnis Anda.",
+                features: [
+                    "Desain UI/UX modern dan responsif",
+                    "Optimasi untuk semua perangkat",
+                    "Fitur sesuai kebutuhan bisnis",
+                    "Revisi hingga 3 kali",
+                    "Waktu pengerjaan 5-10 hari"
+                ]
+            },
+            {
+                id: 2,
+                name: "Pembuatan PPT Akademik",
+                price: "Rp. 20.000 - 40.000",
+                image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=80",
+                description: "Presentasi menarik untuk tugas sekolah (SMA/SMK) dan perkuliahan.",
+                features: [
+                    "Desain template menarik dan profesional",
+                    "Layout konten yang terstruktur",
+                    "Grafik dan diagram yang informatif",
+                    "Revisi hingga 2 kali",
+                    "Waktu pengerjaan 1-3 hari"
+                ]
+            }
+        ];
+
+        // WhatsApp and Dana numbers
+        const whatsappNumber = "+628990742223";
+        const danaNumber = "+628990742223";
+
+        // DOM Elements
+        const servicesContainer = document.getElementById('servicesContainer');
+        const serviceModal = document.getElementById('serviceModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        // Initialize services on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderServices();
+            setupEventListeners();
+            
+            // Add fade-in animation to elements when scrolling
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.service-card, .section-title').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Render services to the page
+        function renderServices() {
+            servicesContainer.innerHTML = '';
+            
+            servicesData.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card fade-in';
+                serviceCard.innerHTML = `
+                    <div class="service-img">
+                        <img src="${service.image}" alt="${service.name}">
+                    </div>
+                    <div class="service-content">
+                        <h3>${service.name}</h3>
+                        <div class="price">${service.price}</div>
+                        <p class="service-desc">${service.description}</p>
+                        <div class="service-actions">
+                            <button class="btn btn-detail" data-id="${service.id}">
+                                <i class="fas fa-info-circle"></i> Lihat Detail
+                            </button>
+                            <button class="btn btn-whatsapp" data-id="${service.id}">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                servicesContainer.appendChild(serviceCard);
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+
+            // Service detail button clicks
+            servicesContainer.addEventListener('click', function(e) {
+                const btn = e.target.closest('.btn');
+                if (!btn) return;
+                
+                const serviceId = parseInt(btn.getAttribute('data-id'));
+                const service = servicesData.find(s => s.id === serviceId);
+                
+                if (!service) return;
+                
+                if (btn.classList.contains('btn-detail')) {
+                    openServiceModal(service);
+                } else if (btn.classList.contains('btn-whatsapp')) {
+                    openWhatsApp(service);
+                }
+            });
+
+            // Modal close button
+            closeModalBtn.addEventListener('click', closeModal);
+
+            // Close modal when clicking outside
+            serviceModal.addEventListener('click', function(e) {
+                if (e.target === serviceModal) {
+                    closeModal();
+                }
+            });
+
+            // Modal action buttons
+            document.getElementById('modalWhatsapp').addEventListener('click', function() {
+                const serviceName = document.getElementById('modalTitle').textContent;
+                openWhatsApp({name: serviceName});
+            });
+
+            document.getElementById('modalDana').addEventListener('click', function() {
+                alert(`Untuk pembayaran via Dana, silakan transfer ke nomor: ${danaNumber}\n\nSetelah transfer, konfirmasi via WhatsApp dengan mengirim bukti transfer.`);
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        }
+
+        // Open service modal with details
+        function openServiceModal(service) {
+            document.getElementById('modalTitle').textContent = service.name;
+            document.getElementById('modalImage').src = service.image;
+            document.getElementById('modalImage').alt = service.name;
+            document.getElementById('modalPrice').textContent = service.price;
+            document.getElementById('modalDesc').textContent = service.description;
+            
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = '';
+            
+            service.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+            
+            serviceModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close service modal
+        function closeModal() {
+            serviceModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open WhatsApp with pre-filled message
+        function openWhatsApp(service) {
+            const message = `Halo Tico Tech, saya tertarik dengan layanan *${service.name}*. Bisakah anda memberikan informasi lebih detail?`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
